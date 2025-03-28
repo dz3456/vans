@@ -14,15 +14,13 @@
         
         body {
             font-family: 'Arial', sans-serif;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            min-height: 100vh;
             color: #5a3d3d;
             text-align: center;
             touch-action: manipulation;
             -webkit-text-size-adjust: 100%;
+            position: relative;
+            overflow-x: hidden;
         }
         
         /* Background video */
@@ -53,7 +51,7 @@
         
         /* Animated background elements */
         .heart {
-            position: absolute;
+            position: fixed;
             font-size: clamp(12px, 3vw, 18px);
             animation: float 6s linear infinite;
             opacity: 0.7;
@@ -66,10 +64,19 @@
             100% { transform: translateY(-100vh) rotate(360deg); }
         }
         
+        /* Main content container */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
         .container {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(5px);
-            width: 90%;
+            width: 100%;
             max-width: 500px;
             padding: 20px;
             border-radius: 15px;
@@ -77,8 +84,9 @@
             z-index: 1;
             border: 2px dashed #ff80ab;
             animation: fadeIn 1.5s ease-out;
-            margin: 20px;
-            overflow: hidden;
+            margin: 20px 0;
+            overflow-y: auto;
+            max-height: 90vh;
         }
         
         @keyframes fadeIn {
@@ -191,6 +199,21 @@
                 transform: none;
             }
         }
+        
+        /* Custom scrollbar */
+        .container::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .container::-webkit-scrollbar-track {
+            background: rgba(255, 192, 203, 0.2);
+            border-radius: 10px;
+        }
+        
+        .container::-webkit-scrollbar-thumb {
+            background: #ff6b8b;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -207,38 +230,43 @@
     <div class="heart" style="left:90%; animation-delay:1s;">✨</div>
     
     <!-- Main content -->
-    <div class="container">
-        <!-- Round profile picture -->
-        <img src="sawako.jpg" alt="Vanshika" class="profile-pic">
-        
-        <h1>Happy 1st Day Together!</h1>
-        <div class="date-counter" id="day-counter"></div>
-        
-        <div class="message">
-            Vanshika, today marks the beginning of our beautiful story.<br>
-            Like Sawako and Kazehaya's first chapter, but this one's ours.
-        </div>
-        
-        <div class="couple-emoji">👫💞</div>
-        
-        <div class="message">
-            I woke up today feeling like the luckiest person alive,<br>
-            because I get to call you mine from this day forward.
-        </div>
-        
-        <!-- Promise Button -->
-        <button class="promise-btn" id="promiseBtn">My Promise to You</button>
-        
-        <!-- Promise Message (hidden initially) -->
-        <div class="promise-message" id="promiseMessage">
-            <p>I promise to be your creative partner in all things - your drawings, your novels, your writing.</p>
-            <p>Though I might be better at drawing now, I'll help you grow until your skills surpass mine.</p>
-            <p>We'll create together - you'll write the stories, and we'll illustrate them side by side.</p>
-            <p>This is our story now, and I can't wait to create it with you.</p>
-        </div>
-        
-        <div class="message" style="font-style: italic; margin-top: 20px;">
-            Here's to countless more mornings together, my love.
+    <div class="main-content">
+        <div class="container">
+            <!-- Round profile picture -->
+            <img src="sawako.jpg" alt="Vanshika" class="profile-pic">
+            
+            <h1>Happy 1st Day Together!</h1>
+            <div class="date-counter" id="day-counter"></div>
+            
+            <div class="message">
+                Vanshika, today marks the beginning of our beautiful story.<br>
+                Like Sawako and Kazehaya's first chapter, but this one's ours.
+            </div>
+            
+            <div class="couple-emoji">👫💞</div>
+            
+            <div class="message">
+                I woke up today feeling like the luckiest person alive,<br>
+                because I get to call you mine from this day forward.
+            </div>
+            
+            <!-- Promise Button -->
+            <button class="promise-btn" id="promiseBtn">My Promise to You</button>
+            
+            <!-- Promise Message (hidden initially) -->
+            <div class="promise-message" id="promiseMessage">
+                <p>I promise to be your creative partner in all things - your drawings, your novels, your writing.</p>
+                <p>Though I might be better at drawing now, I'll help you grow until your skills surpass mine.</p>
+                <p>We'll create together - you'll write the stories, and we'll illustrate them side by side.</p>
+                <p>This is our story now, and I can't wait to create it with you.</p>
+            </div>
+            
+            <div class="message" style="font-style: italic; margin-top: 20px;">
+                Here's to countless more mornings together, my love.
+            </div>
+            
+            <!-- Additional space to ensure scrollability -->
+            <div style="height: 20px;"></div>
         </div>
     </div>
 
@@ -302,6 +330,9 @@
                         }, 6000);
                     }, i * 1000);
                 }
+                
+                // Scroll to promise message
+                promiseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             });
         }
         
