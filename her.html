@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Our First Day Together 🌸</title>
+    <style>
+        /* === SAWAKO-INSPIRED ROMANTIC THEME === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #5a3d3d;
+            text-align: center;
+            touch-action: manipulation;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        /* Background video */
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            opacity: 0.8;
+            object-fit: cover;
+        }
+        
+        /* Overlay to soften video */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 192, 203, 0.2);
+            z-index: 0;
+        }
+        
+        /* Animated background elements */
+        .heart {
+            position: absolute;
+            font-size: clamp(12px, 3vw, 18px);
+            animation: float 6s linear infinite;
+            opacity: 0.7;
+            z-index: 0;
+            will-change: transform;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 138, 138, 0.3);
+            z-index: 1;
+            border: 2px dashed #ff80ab;
+            animation: fadeIn 1.5s ease-out;
+            margin: 20px;
+            overflow: hidden;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #ff4081;
+            margin-bottom: 10px;
+            font-size: clamp(1.5rem, 6vw, 2.2rem);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            line-height: 1.3;
+        }
+        
+        .date-counter {
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            color: #ff80ab;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .message {
+            line-height: 1.6;
+            margin: 15px 0;
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+            padding: 0 5px;
+        }
+        
+        .couple-emoji {
+            font-size: clamp(1.8rem, 8vw, 2.5rem);
+            margin: 10px 0;
+            animation: pulse 2s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Round profile picture with border */
+        .profile-pic {
+            width: clamp(80px, 25vw, 120px);
+            height: clamp(80px, 25vw, 120px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff80ab;
+            box-shadow: 0 0 15px rgba(255, 107, 139, 0.4);
+            margin: 0 auto 15px;
+            display: block;
+            animation: gentlePulse 3s infinite;
+        }
+        
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Promise button styles */
+        .promise-btn {
+            background: linear-gradient(45deg, #ff6b8b, #ff8e53);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+            margin: 15px auto;
+            transition: all 0.3s;
+            display: block;
+            box-shadow: 0 4px 10px rgba(255, 107, 139, 0.3);
+        }
+        
+        .promise-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 107, 139, 0.4);
+        }
+        
+        /* Promise message */
+        .promise-message {
+            background: rgba(255, 235, 238, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+            border-left: 4px solid #ff6b8b;
+        }
+        
+        .promise-message p {
+            margin: 8px 0;
+            text-align: left;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .promise-message p:before {
+            content: "✏️";
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Disable animations for users who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .heart, .couple-emoji, .profile-pic, .container, .promise-message {
+                animation: none !important;
+            }
+            .promise-btn:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Romantic background video -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="Kimi Ni Todoke - Wanna Be Yours (AMV _ EDIT).mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    
+    <!-- Floating hearts background -->
+    <div class="heart" style="left:10%; animation-delay:0s;">❤️</div>
+    <div class="heart" style="left:30%; animation-delay:2s;">🌸</div>
+    <div class="heart" style="left:70%; animation-delay:4s;">💖</div>
+    <div class="heart" style="left:90%; animation-delay:1s;">✨</div>
+    
+    <!-- Main content -->
+    <div class="container">
+        <!-- Round profile picture -->
+        <img src="sawako.jpg" alt="Vanshika" class="profile-pic">
+        
+        <h1>Happy 1st Day Together!</h1>
+        <div class="date-counter" id="day-counter"></div>
+        
+        <div class="message">
+            Vanshika, today marks the beginning of our beautiful story.<br>
+            Like Sawako and Kazehaya's first chapter, but this one's ours.
+        </div>
+        
+        <div class="couple-emoji">👫💞</div>
+        
+        <div class="message">
+            I woke up today feeling like the luckiest person alive,<br>
+            because I get to call you mine from this day forward.
+        </div>
+        
+        <!-- Promise Button -->
+        <button class="promise-btn" id="promiseBtn">My Promise to You</button>
+        
+        <!-- Promise Message (hidden initially) -->
+        <div class="promise-message" id="promiseMessage">
+            <p>I promise to be your creative partner in all things - your drawings, your novels, your writing.</p>
+            <p>Though I might be better at drawing now, I'll help you grow until your skills surpass mine.</p>
+            <p>We'll create together - you'll write the stories, and we'll illustrate them side by side.</p>
+            <p>This is our story now, and I can't wait to create it with you.</p>
+        </div>
+        
+        <div class="message" style="font-style: italic; margin-top: 20px;">
+            Here's to countless more mornings together, my love.
+        </div>
+    </div>
+
+    <script>
+        // Create more floating hearts
+        function createHearts() {
+            const emojis = ["❤️", "🌸", "💖", "✨"];
+            const heartCount = window.innerWidth < 768 ? 4 : 6; // Fewer hearts on mobile
+            
+            for (let i = 0; i < heartCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement("div");
+                    heart.className = "heart";
+                    heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    heart.style.left = Math.random() * 100 + "%";
+                    heart.style.animationDuration = (Math.random() * 3 + 5) + "s";
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 6000);
+                }, i * 800);
+            }
+        }
+        
+        // Display day counter
+        function updateDateCounter() {
+            document.getElementById("day-counter").textContent = 
+                "Day 1 • " + new Date().toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+        }
+        
+        // Handle promise button click
+        function setupPromiseButton() {
+            const promiseBtn = document.getElementById('promiseBtn');
+            const promiseMessage = document.getElementById('promiseMessage');
+            
+            promiseBtn.addEventListener('click', () => {
+                promiseMessage.style.display = 'block';
+                promiseBtn.style.display = 'none';
+                
+                // Add special floating drawing elements
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        const pencil = document.createElement("div");
+                        pencil.className = "heart";
+                        pencil.innerHTML = "✏️";
+                        pencil.style.left = Math.random() * 100 + "%";
+                        pencil.style.animationDuration = (Math.random() * 3 + 5) + "s";
+                        document.body.appendChild(pencil);
+                        
+                        setTimeout(() => {
+                            if (pencil.parentNode) {
+                                pencil.parentNode.removeChild(pencil);
+                            }
+                        }, 6000);
+                    }, i * 1000);
+                }
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDateCounter();
+            createHearts();
+            setupPromiseButton();
+            setInterval(createHearts, 5000);
+            
+            // Handle video autoplay on mobile
+            const video = document.getElementById('bg-video');
+            video.play().catch(e => {
+                // Fallback for autoplay restrictions
+                video.muted = true;
+                video.play();
+            });
+        });
+    </script>
+</body>
+</html>
