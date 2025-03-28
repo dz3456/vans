@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Our First Day Together 🌸</title>
+    <title>Good Morning, My Love 🌸</title>
     <style>
-        /* === SAWAKO-INSPIRED ROMANTIC THEME === */
+        /* === SAWAKO-INSPIRED MORNING THEME === */
         * {
             margin: 0;
             padding: 0;
@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
         
-        /* Background video */
+        /* Morning background video */
         #bg-video {
             position: fixed;
             top: 50%;
@@ -38,18 +38,18 @@
             object-fit: cover;
         }
         
-        /* Overlay to soften video */
+        /* Sunrise overlay */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 192, 203, 0.2);
+            background: linear-gradient(to bottom, rgba(255,204,230,0.2), rgba(255,230,204,0.3));
             z-index: 0;
         }
         
-        /* Animated background elements */
+        /* Animated morning elements */
         .heart {
             position: fixed;
             font-size: clamp(12px, 3vw, 18px);
@@ -95,11 +95,18 @@
         }
         
         h1 {
-            color: #ff4081;
+            color: #ff6b8b;
             margin-bottom: 10px;
-            font-size: clamp(1.5rem, 6vw, 2.2rem);
+            font-size: clamp(1.8rem, 7vw, 2.5rem);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
             line-height: 1.3;
+        }
+        
+        .morning-greeting {
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            color: #ff8e53;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
         
         .date-counter {
@@ -128,14 +135,14 @@
             50% { transform: scale(1.1); }
         }
         
-        /* Round profile picture with border */
+        /* Round profile picture with morning glow */
         .profile-pic {
             width: clamp(80px, 25vw, 120px);
             height: clamp(80px, 25vw, 120px);
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #ff80ab;
-            box-shadow: 0 0 15px rgba(255, 107, 139, 0.4);
+            border: 3px solid #ffaa80;
+            box-shadow: 0 0 20px rgba(255, 170, 128, 0.6);
             margin: 0 auto 15px;
             display: block;
             animation: gentlePulse 3s infinite;
@@ -146,9 +153,9 @@
             50% { transform: scale(1.05); }
         }
         
-        /* Promise button styles */
+        /* Promise button with morning colors */
         .promise-btn {
-            background: linear-gradient(45deg, #ff6b8b, #ff8e53);
+            background: linear-gradient(45deg, #ff8e53, #ffaa80);
             color: white;
             border: none;
             padding: 12px 25px;
@@ -158,39 +165,48 @@
             margin: 15px auto;
             transition: all 0.3s;
             display: block;
-            box-shadow: 0 4px 10px rgba(255, 107, 139, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 142, 83, 0.4);
         }
         
         .promise-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(255, 107, 139, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 142, 83, 0.6);
         }
         
-        /* Promise message */
+        /* Promise message with morning theme */
         .promise-message {
-            background: rgba(255, 235, 238, 0.7);
+            background: rgba(255, 240, 230, 0.8);
             border-radius: 10px;
             padding: 15px;
             margin: 15px 0;
             display: none;
             animation: fadeIn 0.8s ease-out;
-            border-left: 4px solid #ff6b8b;
+            border-left: 4px solid #ff8e53;
         }
         
         .promise-message p {
             margin: 8px 0;
             text-align: left;
             position: relative;
-            padding-left: 20px;
+            padding-left: 25px;
         }
         
         .promise-message p:before {
-            content: "✏️";
+            content: "🌅";
             position: absolute;
             left: 0;
         }
         
-        /* Disable animations for users who prefer reduced motion */
+        /* Sunrise animation for header */
+        .sunrise-text {
+            background: linear-gradient(45deg, #ff6b8b, #ff8e53);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        /* Disable animations for reduced motion */
         @media (prefers-reduced-motion: reduce) {
             .heart, .couple-emoji, .profile-pic, .container, .promise-message {
                 animation: none !important;
@@ -206,27 +222,27 @@
         }
         
         .container::-webkit-scrollbar-track {
-            background: rgba(255, 192, 203, 0.2);
+            background: rgba(255, 204, 230, 0.2);
             border-radius: 10px;
         }
         
         .container::-webkit-scrollbar-thumb {
-            background: #ff6b8b;
+            background: #ff8e53;
             border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <!-- Romantic background video -->
+    <!-- Morning background video -->
     <video autoplay muted loop playsinline id="bg-video">
-        <source src="Kimi Ni Todoke - Wanna Be Yours (AMV _ EDIT).mp4" type="video/mp4">
+        <source src="morning-sunrise.mp4" type="video/mp4">
     </video>
     <div class="overlay"></div>
     
-    <!-- Floating hearts background -->
-    <div class="heart" style="left:10%; animation-delay:0s;">❤️</div>
+    <!-- Floating morning elements -->
+    <div class="heart" style="left:10%; animation-delay:0s;">☀️</div>
     <div class="heart" style="left:30%; animation-delay:2s;">🌸</div>
-    <div class="heart" style="left:70%; animation-delay:4s;">💖</div>
+    <div class="heart" style="left:70%; animation-delay:4s;">🌻</div>
     <div class="heart" style="left:90%; animation-delay:1s;">✨</div>
     
     <!-- Main content -->
@@ -235,23 +251,24 @@
             <!-- Round profile picture -->
             <img src="sawako.jpg" alt="Vanshika" class="profile-pic">
             
-            <h1>Happy 1st Day Together!</h1>
+            <h1><span class="sunrise-text">Good Morning, Vanshika</span> 🌸</h1>
+            <div class="morning-greeting">Our First Morning Together</div>
             <div class="date-counter" id="day-counter"></div>
             
             <div class="message">
-                Vanshika, today marks the beginning of our beautiful story.<br>
-                Like Sawako and Kazehaya's first chapter, but this one's ours.
+                Waking up knowing you're mine makes every sunrise more beautiful than the last.
             </div>
             
-            <div class="couple-emoji">👫💞</div>
+            <div class="couple-emoji">👫🌅</div>
             
             <div class="message">
-                I woke up today feeling like the luckiest person alive,<br>
-                because I get to call you mine from this day forward.
+                Today I just want you to know:<br>
+                You're the Sawako to my Kazehaya -<br>
+                the sweetest soul I've ever known.
             </div>
             
             <!-- Promise Button -->
-            <button class="promise-btn" id="promiseBtn">My Promise to You</button>
+            <button class="promise-btn" id="promiseBtn">My Morning Promise</button>
             
             <!-- Promise Message (hidden initially) -->
             <div class="promise-message" id="promiseMessage">
@@ -262,49 +279,49 @@
             </div>
             
             <div class="message" style="font-style: italic; margin-top: 20px;">
-                Here's to countless more mornings together, my love.
+                Have a wonderful day, my love.
             </div>
             
-            <!-- Additional space to ensure scrollability -->
+            <!-- Additional space for scrolling -->
             <div style="height: 20px;"></div>
         </div>
     </div>
 
     <script>
-        // Create more floating hearts
-        function createHearts() {
-            const emojis = ["❤️", "🌸", "💖", "✨"];
-            const heartCount = window.innerWidth < 768 ? 4 : 6; // Fewer hearts on mobile
+        // Create more floating elements
+        function createMorningElements() {
+            const elements = ["☀️", "🌸", "🌻", "✨", "💖"];
+            const elementCount = window.innerWidth < 768 ? 4 : 6;
             
-            for (let i = 0; i < heartCount; i++) {
+            for (let i = 0; i < elementCount; i++) {
                 setTimeout(() => {
-                    const heart = document.createElement("div");
-                    heart.className = "heart";
-                    heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                    heart.style.left = Math.random() * 100 + "%";
-                    heart.style.animationDuration = (Math.random() * 3 + 5) + "s";
-                    document.body.appendChild(heart);
+                    const element = document.createElement("div");
+                    element.className = "heart";
+                    element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                    element.style.left = Math.random() * 100 + "%";
+                    element.style.animationDuration = (Math.random() * 3 + 5) + "s";
+                    document.body.appendChild(element);
                     
                     setTimeout(() => {
-                        if (heart.parentNode) {
-                            heart.parentNode.removeChild(heart);
+                        if (element.parentNode) {
+                            element.parentNode.removeChild(element);
                         }
                     }, 6000);
                 }, i * 800);
             }
         }
         
-        // Display day counter
+        // Display date
         function updateDateCounter() {
             document.getElementById("day-counter").textContent = 
-                "Day 1 • " + new Date().toLocaleDateString('en-US', { 
+                new Date().toLocaleDateString('en-US', { 
                     weekday: 'long', 
                     month: 'long', 
                     day: 'numeric' 
                 });
         }
         
-        // Handle promise button click
+        // Handle promise button
         function setupPromiseButton() {
             const promiseBtn = document.getElementById('promiseBtn');
             const promiseMessage = document.getElementById('promiseMessage');
@@ -313,7 +330,7 @@
                 promiseMessage.style.display = 'block';
                 promiseBtn.style.display = 'none';
                 
-                // Add special floating drawing elements
+                // Add special floating elements
                 for (let i = 0; i < 3; i++) {
                     setTimeout(() => {
                         const pencil = document.createElement("div");
@@ -331,7 +348,6 @@
                     }, i * 1000);
                 }
                 
-                // Scroll to promise message
                 promiseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             });
         }
@@ -339,14 +355,13 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             updateDateCounter();
-            createHearts();
+            createMorningElements();
             setupPromiseButton();
-            setInterval(createHearts, 5000);
+            setInterval(createMorningElements, 5000);
             
-            // Handle video autoplay on mobile
+            // Handle video autoplay
             const video = document.getElementById('bg-video');
             video.play().catch(e => {
-                // Fallback for autoplay restrictions
                 video.muted = true;
                 video.play();
             });
